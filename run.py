@@ -1,4 +1,4 @@
-DEBUG = True
+# DEBUG = True
 
 from project import app
 
