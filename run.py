@@ -1,3 +1,4 @@
+DEBUG = True
 
 from project import app
 
