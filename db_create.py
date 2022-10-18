@@ -1,7 +1,7 @@
 from project.ext import db
 from project.models import Recipe
 
-db.create_all()
+
 
 recipe1 = Recipe('Slow-Cooker Tacos', 'Delicious ground beef that has been simmering in taco seasoning and sauce.  '
                                       'Perfect with hard-shelled tortillas!')
@@ -12,4 +12,5 @@ db.session.add(recipe1)
 db.session.add(recipe2)
 db.session.add(recipe3)
 
+db.create_all()
 db.session.commit()

@@ -1,5 +1,11 @@
+
 import unittest
-from project import app
+
+from project.factory import create_app
+
+app = create_app()
+
+
 
 
 class ProjectTest(unittest.TestCase):
@@ -7,7 +13,6 @@ class ProjectTest(unittest.TestCase):
         app.config['TESTING'] = True
         app.config['DEBUG'] = False
         self.app = app.test_client()
-
         self.assertEqual(app.debug, False)
 
     def tearDown(self) -> None:

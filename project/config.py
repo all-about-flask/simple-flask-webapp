@@ -11,3 +11,5 @@ class Baseconfig:
     # SQLALCHEMY
     SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+    WTF_CSRF_ENABLED = True
