@@ -1,6 +1,8 @@
 import unittest
 
-from project import app
+from project.factory import create_app
+
+app = create_app()
 
 
 class ProjectTests(unittest.TestCase):
@@ -17,8 +19,7 @@ class ProjectTests(unittest.TestCase):
 
     def test_main_page(self):
         response = self.app.get('/', follow_redirects=True)
-        self.assertIn(b'Welcome to the Kennedy Family Recipe App!', response.data)
-        self.assertIn(b'This site describes our favorite family recipes!', response.data)
+        self.assertIn(b'Kennedy Family Recipes', response.data)
         self.assertIn(b'Breakfast Recipe', response.data)
         self.assertIn(b'Lunch Recipe', response.data)
         self.assertIn(b'Dinner Recipe', response.data)

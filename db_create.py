@@ -1,4 +1,4 @@
-from project import db
+from project.ext import db
 from project.models import Recipe
 
 db.create_all()

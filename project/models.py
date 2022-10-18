@@ -1,4 +1,4 @@
-from project import db
+from project.ext import db
 
 
 class Recipe(db.Model):
@@ -11,6 +11,5 @@ class Recipe(db.Model):
         self.recipe_title = title
         self.recipe_description = description
 
-
-def __repr__(self):
-    return '<title {}'.format(self.name)
+    def __repr__(self):
+        return '<title {}'.format(self.name)
