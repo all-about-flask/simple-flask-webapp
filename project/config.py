@@ -5,7 +5,7 @@ class Baseconfig:
     BASEDIR = os.path.abspath(os.path.dirname(__file__))
     TOP_LEVEL_DIR = os.path.abspath(os.curdir)
 
-    SECRET_KEY = ''
+    SECRET_KEY = 'Sccl3OozBp'
     DEBUG = True
 
     # SQLALCHEMY

@@ -1,3 +1,5 @@
+from sqlalchemy.ext.hybrid import hybrid_method
+
 from project.ext import db
 
 
@@ -16,14 +18,42 @@ class Recipe(db.Model):
 
 
 class User(db.Model):
+
     __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String, unique=True, nullable=False)
-    password_plaintext = db.Column(db.String, nullable=False)  # To be deleted
+    password_plaintext = db.Column(db.String, nullable=False)  # TEMPORARY - TO BE DELETED IN FAVOR OF HASHED PASSWORD
+    authenticated = db.Column(db.Boolean, default=False)
 
     def __init__(self, email, password_plaintext):
         self.email = email
         self.password_plaintext = password_plaintext
+        self.authenticated = False
+
+    @hybrid_method
+    def is_correct_password(self, plaintext_password):
+        return self.password_plaintext == plaintext_password
+
+    @property
+    def is_authenticated(self):
+        # Return True if user authenticated
+        return self.authenticated
+
+    @property
+    def is_active(self):
+        # always true, as all user are active
+        return True
+
+    @property
+    def is_anonymous(self):
+        # always false as all user aren't supported
+        return False
+
+    def get_id(self):
+        """Return the email address to satisfy Flask-Login's requirements."""
+        """Requires use of Python 3"""
+        return str(self.id)
 
     def __repr__(self):
-        return '<user {0}>'.format(self.name)
+        return '<User {0}>'.format(self.name)

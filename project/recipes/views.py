@@ -19,9 +19,9 @@ def add_recipe():
     if request.method == 'POST':
         if form.validate():
             new_recipe = Recipe(form.recipe_title.data, form.recipe_description.data)
+            flash('New recipe, {}, added!'.format(new_recipe.recipe_title), 'success')
             db.session.add(new_recipe)
             db.session.commit()
-            flash('New recipe, {}, added!'.format(new_recipe.recipe_title), 'success')
             return redirect(url_for('recipes.index'))
         else:
             flash('ERROR! Recipe was not added.', 'error')
